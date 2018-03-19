@@ -1,0 +1,7 @@
+C:\Users\aromero\Documents\Code\GIT\topCoin\topCoin\topCoin\bin\Debug\topCoin.exe.config
+C:\Users\aromero\Documents\Code\GIT\topCoin\topCoin\topCoin\bin\Debug\topCoin.exe
+C:\Users\aromero\Documents\Code\GIT\topCoin\topCoin\topCoin\bin\Debug\topCoin.pdb
+C:\Users\aromero\Documents\Code\GIT\topCoin\topCoin\topCoin\obj\Debug\topCoin.csprojResolveAssemblyReference.cache
+C:\Users\aromero\Documents\Code\GIT\topCoin\topCoin\topCoin\obj\Debug\topCoin.csproj.CoreCompileInputs.cache
+C:\Users\aromero\Documents\Code\GIT\topCoin\topCoin\topCoin\obj\Debug\topCoin.exe
+C:\Users\aromero\Documents\Code\GIT\topCoin\topCoin\topCoin\obj\Debug\topCoin.pdb
