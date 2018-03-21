@@ -1,30 +1,37 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace topCoin
 {
-    class Blockchain
+    public class Blockchain
     {
-        List<Block> chain = new List<Block>();
+        public List<Block> chain = new List<Block>();
+        private int Difficulty { get; set; }
 
         public Blockchain()
         {
             //Genesis Block. TODO: Get data from config file
-            chain.Add(new Block(0, DateTime.Today.ToLongTimeString(), null, ""));
+            string datetime = DateTime.Today.ToLongTimeString();
+            chain.Add(new Block(0, datetime, ConfigurationManager.AppSettings["GenesisData"], "0"));
+            this.Difficulty = 2;
         }
 
         public Block GetLatestBlock()
         {
-            return chain.Last();
+            return chain.Last();    
         }
 
         public void AddBlock(Block newBlock)
         {
-            newBlock.PreviousHash = chain.Last().PreviousHash;
-            newBlock.Hash = newBlock.CalculateHash();
+            newBlock.PreviousHash = chain.Last().Hash;
+            //replace for mineBlock
+            //newBlock.Hash = newBlock.CalculateHash();
+
+            newBlock.MineBlock(this.Difficulty);
             chain.Add(newBlock);
         }
 
