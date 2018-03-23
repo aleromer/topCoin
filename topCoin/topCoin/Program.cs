@@ -11,18 +11,23 @@ namespace topCoin
         static void Main(string[] args)
         {
             Blockchain chain = new topCoin.Blockchain();
+            Console.WriteLine("Creating Transactions");
+            chain.CreateTransaction(new Transaction("address1", "address2", 12, "codigo smart contract"));
+            chain.CreateTransaction(new Transaction("address2", "address1", 4, "codigo smart contract"));
+            chain.CreateTransaction(new Transaction("address3", "address2", 10, "codigo smart contract"));
 
-            string datetime = DateTime.Today.ToLongTimeString();
-            chain.AddBlock(new Block(1, datetime, "block1"));
+            Console.WriteLine("mining block");
+            chain.MineBlock("address3");
 
-            datetime = DateTime.Today.ToLongTimeString();
-            chain.AddBlock(new Block(2, datetime, "block2"));
+            Console.WriteLine("balance addr1: " + chain.CheckBalance("address1"));
+            Console.WriteLine("balance addr2: " + chain.CheckBalance("address2"));
+            Console.WriteLine("balance addr3: " + chain.CheckBalance("address3"));
 
-            Console.WriteLine(chain.ValidateChain());
-
-            // data manipulation
-            chain.chain[1].Data = "3";
-            Console.WriteLine(chain.ValidateChain());
+            Console.WriteLine("mining block");
+            chain.MineBlock("address3");
+            Console.WriteLine("balance addr3: " + chain.CheckBalance("address3"));
+            
+            Console.WriteLine("Is chain valid?: " + chain.ValidateChain());
 
             Console.ReadKey();
         }

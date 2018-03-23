@@ -9,19 +9,17 @@ namespace topCoin
 {
     public class Block
     {
-        public int Index { get; set; }
         public string PreviousHash { get; set; }
         public string Timestamp { get; set; }
-        public string Data { get; set; }
+        public List<Transaction> Transactions { get; set; }
         public string Hash { get; set; }
         public int Nonce { get; set; } // nonce value. This is a number that gets incremented until a good hash is found
 
-        public Block(int index, string timestamp, string data, string previousHash = "")
+        public Block(string timestamp, List<Transaction> pendingTransactions, string previousHash = "")
         {
-            this.Index = index;
             this.PreviousHash = previousHash;
             this.Timestamp = timestamp;
-            this.Data = data;
+            this.Transactions = new List<Transaction>(pendingTransactions);
             this.Hash = this.CalculateHash();
             this.Nonce = 0;
         }
@@ -40,7 +38,7 @@ namespace topCoin
 
         public string CalculateHash()
         {
-            string data = this.Index.ToString() + this.PreviousHash + this.Timestamp + this.Data.ToString() + this.Nonce;
+            string data = this.PreviousHash + this.Timestamp + this.Transactions.ToString() + this.Nonce;
 
             byte[] bytes = Encoding.Unicode.GetBytes(data);
             SHA256Managed hashstring = new SHA256Managed();
